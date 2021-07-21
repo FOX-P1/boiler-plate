@@ -28,7 +28,7 @@ app.get("/api/hello", (req, res) => {
     res.send("안녕하세요 ~ ");
 });
 
-app.post("/register", (req, res) => {
+app.post("/api/users/register", (req, res) => {
     const user = new User(req.body);
 
     user.save((err, userInfo) => {
@@ -39,7 +39,7 @@ app.post("/register", (req, res) => {
     });
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/users/login", (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
             return res.json({
@@ -88,6 +88,6 @@ app.get("/api/users/logout", auth, (req, res) => {
     });
 });
 
-const port = 3001;
+const port = 3002;
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
